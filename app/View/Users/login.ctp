@@ -32,4 +32,4 @@
 <?php
  //echo $this->Html->link( "Register",   array('action'=>'add') ); 
 ?>
-xxxxxxxxx
+more text............
