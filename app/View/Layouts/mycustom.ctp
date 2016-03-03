@@ -28,11 +28,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	
 	<?php
 		echo $this->Html->meta('icon');
-
+		
+		//css
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('override');
+		echo $this->Html->css('zebra_datepicker');
 		
+		//javascrip
 		echo $this->Html->script('jquery-1.12.1');
+		echo $this->Html->script('jquery-migrate-1.2.1');
+		echo $this->Html->script('zebra_datepicker');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

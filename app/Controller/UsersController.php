@@ -49,7 +49,7 @@ class UsersController extends AppController {
 		
 	}
 	
-	public function profile($id = null){
+	public function profile(){
 		$this->set('message','<h3>Profile Page</h3>');
 		
 		// Set User's ID in model which is needed for validation
@@ -108,6 +108,8 @@ class UsersController extends AppController {
 
 			if ($this->request->is('post') || $this->request->is('put')) {
 				$this->User->id = $id;
+				print_r($this->request->data);
+				die;
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('The user has been updated'));
 					$this->redirect(array('action' => 'edit', $id));
@@ -119,6 +121,13 @@ class UsersController extends AppController {
 			if (!$this->request->data) {
 				$this->request->data = $user;
 			}
+			
+			// Set User's ID in model which is needed for validation
+			$this->User->id = $this->Auth->user('id');
+
+			// Load the user (avoid populating $this->data)
+			$current_user = $this->User->findById($this->User->id);
+			$this->set('current_user', $current_user);
     }
 
     public function delete($id = null) {

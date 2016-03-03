@@ -22,11 +22,8 @@
 
 					?>
 					
-					<?php if($this->data['User']['id']){ ?>
-						    edit page
-					<?php }else{ ?>
 						<div class="row" style="margin-left:10px;">
-						  <div class="span4"><?php echo $this->Html->link("Edit Information",  array('action'=>'profile', $current_user['User']['id']) ); ?></div>
+						  <div class="span4"><?php echo $this->Html->link("Edit Information",  array('action'=>'edit', $current_user['User']['id']) ); ?></div>
 						  <div class="span4"><h3><?php echo $current_user['User']['name']; ?></h3></div>
 						  <div class="span4">Gender:<span><?php echo $g; ?></span></div>
 						  <div class="span4">Birthdate: <span><?php echo $date; ?></span></div>
@@ -34,7 +31,7 @@
 						  <div class="span4">Last Login: <span><?php echo $lastlogin; ?></span></div>
 						  <div class="span4">Hobby: <span><?php echo $current_user['User']['hobby']; ?></span></div>
 						</div>
-					<?php } ?>
+					
 				  </div>
 				 
 				</div>
@@ -45,3 +42,5 @@
 		</div>
 	</div>
 </div>
+
+
