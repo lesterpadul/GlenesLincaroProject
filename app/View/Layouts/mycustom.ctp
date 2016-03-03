@@ -79,7 +79,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			
 			</div>
 		</div>
-		<div id="content">
+		<div id="main-content">
 
 			<?php echo $this->Session->flash(); ?>
 

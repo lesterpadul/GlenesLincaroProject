@@ -49,7 +49,7 @@ class UsersController extends AppController {
 		
 	}
 	
-	public function profile(){
+	public function profile($id = null){
 		$this->set('message','<h3>Profile Page</h3>');
 		
 		// Set User's ID in model which is needed for validation
