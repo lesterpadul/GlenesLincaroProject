@@ -8,6 +8,7 @@
 				<div class="span4">
 				  <!--<img style="float:left" src = "/img/profile-default.png" class = "img-thumbnail"/>-->
 				  <?php echo $this->Html->image('default-profile.png', array('alt' => 'profile', 'class' => 'img-thumbnail', 'border' => '0', 'data-src' => 'holder.js/100%x100')); ?>
+				  <?php echo $this->Html->link( "Upload Profile",   array('action'=>'upload') ); ?>
 				  <div class="content-heading userInfo">
 						<div style="width:45%! important;">
 							<?php 
@@ -49,9 +50,8 @@
 			</div>
            </div>
         </div><!-- @end .row -->
-		</div>
-	</div>
 </div>
+	
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	

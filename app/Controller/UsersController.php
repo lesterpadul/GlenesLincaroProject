@@ -71,7 +71,6 @@ class UsersController extends AppController {
 		);
 		$users = $this->paginate('User');
 		$this->set(compact('users'));
-		//$this->set( 'loggedIn', $this->Auth->loggedIn() );
     }
 
 
@@ -112,10 +111,12 @@ class UsersController extends AppController {
 				//die;
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('The user has been updated'));
-					$this->redirect(array('action' => 'edit', $id));
+					//$this->redirect(array('action' => 'edit', $id));
+					$this->redirect(array('action' => 'profile'));
 				}else{
 					$this->Session->setFlash(__('Unable to update your user.'));
 				}
+				echo var_dump($this->User->invalidFields());
 			}
 
 			if (!$this->request->data) {
