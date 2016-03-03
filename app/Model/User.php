@@ -38,6 +38,10 @@ class User extends AppModel {
 				'message' => 'Usernames must be between 5 to 20 characters'
 			)
         ),
+		/* 'birthdate' => array(),
+		'gender' => array(),
+		'hobby' => array(), */
+	
         'password' => array(
             'required' => array(
                 'rule' => array('notBlank'),
