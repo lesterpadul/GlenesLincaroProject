@@ -12,7 +12,6 @@
 				'class' => 'well'
 			)); ?>
 				<fieldset>
-					<div id="success"></div>
 					<legend>Login</legend>
 				<?php 
 					echo $this->Form->input('username', array(
@@ -25,19 +24,14 @@
 											'placeholder' => 'Password'
 										));
 										
-					/* echo $this->Form->button('Sign-in', array(
+					echo $this->Form->button('Sign-in', array(
 											'div' => 'form-group',
 											'class' => 'btn btn-info'
-										)); */
-					echo $this->Js->submit('Send', array(
-						'before'  => $this->Js->get('#loggingIn')->effect('fadeIn'),
-						'success' => $this->Js->get('#loggingIn')->effect('fadeOut'),
-						'update'  => '#success'
-					));
+										));
+					
 				?>
 				</fieldset>
 			<?php echo $this->Form->end(); ?>
-				<div id="loggingIn" style="display:none;">Logging in...</div>
 			</div>
 		 </div>
 		<?php

@@ -1,0 +1,2 @@
+$(document).ready(function () {$("#submit-1604287213").bind("click", function (event) {$.ajax({beforeSend:function (XMLHttpRequest) {$("#loggingIn").fadeIn();}, data:$("#submit-1604287213").closest("form").serialize(), dataType:"html", success:function (data, textStatus) {$("#loggingIn").fadeOut();$("#success").html(data);}, type:"post", url:"\/GlenesLincaroProject\/login"});
+return false;});});

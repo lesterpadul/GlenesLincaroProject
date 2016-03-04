@@ -42,11 +42,7 @@ class UsersController extends AppController {
 			} else {
 				$this->Session->setFlash('Invalid username or password');
 			}
-		}else if ($this->RequestHandler->isAjax()) {
-			
 		}
-
-		
 
 	}
 	
@@ -82,21 +78,24 @@ class UsersController extends AppController {
 
 
     public function add() {
-        if ($this->request->is('post')) {
+        /* if ($this->request->is('post')) {
 				
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 			
-				/* $ip = '8.8.8.8';
-				$remote_add = DboSource::expression('INET_ATON("'.$ip.'")');
-				$this->User->saveField('created_ip', $remote_add); //save ip */
-				
 				$this->Session->setFlash(__('The user has been created'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be created. Please, try again.'));
-			}	
-        }
+			}	 
+        }else  */if ($this->RequestHandler->isAjax()) {
+			$this->User->create();
+			if ($this->User->save($this->request->data)) {
+				$this->render('thankyou','ajax');
+			}else{
+			
+			}
+		}
     }
     
     public function edit($id = null) {

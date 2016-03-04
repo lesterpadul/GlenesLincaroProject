@@ -10,8 +10,9 @@
 		'class' => 'well'
 	));
 ?>
-	
-    <fieldset>
+	<div id="success"></div>
+	<div id="saving" style="display:none;"><img src="/GlenesLincaroProject/img/pre_loader.gif"></div>
+    <fieldset class='regGlen'>
         <legend><?php echo __('Register'); ?></legend>
         <?php echo $this->Form->input('username', array(
 					'placeholder' => 'Username'
@@ -26,11 +27,20 @@
 			'placeholder' => 'Password'
 		));
 		echo $this->Form->input('password_confirm', array('label' => 'Confirm Password *', 'placeholder' => 'Password', 'maxLength' => 255, 'title' => 'Confirm password', 'type'=>'password'));
-		echo $this->Form->button('Register', array('class' => 'btn btn-info',  'title' => 'Click here to add the user') ); 
+		//echo $this->Form->button('Register', array('class' => 'btn btn-info',  'title' => 'Click here to add the user') ); 
+		echo $this->Js->submit('Register', array(
+						'class' => 'btn btn-info',
+						'before'  => $this->Js->get('#saving')->effect('fadeIn'),
+						'success' => $this->Js->get('#saving')->effect('fadeOut'),
+						'update'  => '#success'
+					));
 		?>
     </fieldset>
 	
 <?php echo $this->Form->end(); ?>
+
+
+
 </div>
 <?php 
 /* if($this->Session->check('Auth.User')){
