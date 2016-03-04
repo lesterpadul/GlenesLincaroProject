@@ -11,14 +11,23 @@
 				  <div class="content-heading userInfo">
 					<?php
 								$gender = $current_user['User']['gender'];
-								if($gender=='m')
-									$g = 'Male';
-								else
-									$g = 'Female';
 								
-								$date = date('M-d-Y', strtotime($current_user['User']['birthdate']));
-								$joindate = date('M-d-Y', strtotime($current_user['User']['created']));
-								$lastlogin = date('M-d-Y', strtotime($current_user['User']['last_login_time']));
+								
+									if($gender=='m')
+										$g = 'Male';
+									else if($gender=='f')
+										$g = 'Female';
+									else	
+										$g ='';
+								$date = '';
+								$joindate = '';
+								$lastlogin = '';
+								if($current_user['User']['birthdate'])
+									$date = date('M-d-Y', strtotime($current_user['User']['birthdate']));
+								if($current_user['User']['created']!='')
+									$joindate = date('M-d-Y', strtotime($current_user['User']['created']));
+								if($current_user['User']['last_login_time']!='')
+									$lastlogin = date('M-d-Y', strtotime($current_user['User']['last_login_time']));
 
 					?>
 					

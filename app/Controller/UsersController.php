@@ -65,12 +65,13 @@ class UsersController extends AppController {
 	}
 
     public function index() {
-		$this->paginate = array(
+		/* $this->paginate = array(
 			'limit' => 6,
 			'order' => array('User.username' => 'asc' )
 		);
 		$users = $this->paginate('User');
-		$this->set(compact('users'));
+		$this->set(compact('users')); */
+		$this->redirect(array('action' => 'home'));
     }
 
 
@@ -91,7 +92,7 @@ class UsersController extends AppController {
 			}	
         }
     }
-
+    
     public function edit($id = null) {
 		
 			/*start upload code*/
@@ -127,13 +128,8 @@ class UsersController extends AppController {
 			if ($this->request->is('post') || $this->request->is('put')) {
 				$this->User->id = $id;
 				
-				//add image to User object
-				if($this->request->data['profile'])
-					$this->User->image = $this->request->data['profile']['image']['name'];
-				
-				
-				print_r($this->request->data);
-				die;
+				/* print_r($this->request->data);
+				die */;
 				
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('The user has been updated'));
@@ -142,7 +138,7 @@ class UsersController extends AppController {
 				}else{
 					$this->Session->setFlash(__('Unable to update your user.'));
 				}
-				echo var_dump($this->User->invalidFields());
+				echo var_dump($this->User->invalidFields()); //error tracking code
 			}
 
 			if (!$this->request->data) {
@@ -161,7 +157,7 @@ class UsersController extends AppController {
 		
 		if (!$id) {
 			$this->Session->setFlash('Please provide a user id');
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action'=>'home'));
 		}
 		
         $this->User->id = $id;

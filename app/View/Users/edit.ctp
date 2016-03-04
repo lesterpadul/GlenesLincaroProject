@@ -11,11 +11,11 @@
 				  <div class="ChImg">
 					<?php 
 						
-						echo $this->Form->create('profile',array('enctype'=>'multipart/form-data')); 
+						echo $this->Form->create('User',array('enctype'=>'multipart/form-data')); 
 							echo $this->Form->input('image', array('type' => 'file'));
 							echo $this->Form->button('Upload', array('class' => 'btn btn-info') ); 
 						echo $this->Form->end();
-					
+				
 					?>
 				  </div>
 				  <div class="content-heading userInfo">

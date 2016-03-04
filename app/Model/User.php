@@ -104,6 +104,8 @@ class User extends AppModel {
 				'required' => false,
 			)
         )
+		
+		
 
 		
     );
@@ -208,9 +210,9 @@ class User extends AppModel {
 		/* print_r($this->data['User']);
 		die; */
 		// upload image
-		if($this->data['User']['profile']){
+		if(isset($this->data['User']['image'])){
 			$valid_formats = array("jpg", "png", "gif", "bmp","jpeg","JPG","JPEG","PNG","GIF","BMP");
-			extract($this->data['User']['profile']['image']);
+			extract($this->data['User']['image']);
 			/* print_r($this->data['User']);
 			die; */
 			if ($size && !$error) {
