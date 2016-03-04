@@ -207,20 +207,17 @@ class User extends AppModel {
 			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password_update']);
 		}
 		
-		/* print_r($this->data['User']);
-		die; */
+		
 		// upload image
-		if(isset($this->data['User']['image'])){
+		/* if(isset($this->data['User']['image'])){
 			$valid_formats = array("jpg", "png", "gif", "bmp","jpeg","JPG","JPEG","PNG","GIF","BMP");
 			extract($this->data['User']['image']);
-			/* print_r($this->data['User']);
-			die; */
+			
 			if ($size && !$error) {
 				list($txt, $ext) = explode(".", $name);
 				if(in_array($ext, $valid_formats)) {
 					
 					$actual_image_name = time().".".$ext;
-					//die($tmp_name.'---'.$this->avatarUploadDir.$actual_image_name);
 					move_uploaded_file($tmp_name, $this->avatarUploadDir.$actual_image_name);
 					$this->data['User']['upload']['image']['name'] = $this->avatarUploadDir;
 					
@@ -229,7 +226,8 @@ class User extends AppModel {
 				}
 			}
 		
-		}
+		} */
+		
 		// fallback to our parent
 		return parent::beforeSave($options);
 	} 

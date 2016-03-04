@@ -1,6 +1,9 @@
 <?php
 
 class UsersController extends AppController {
+	
+	public $helpers = array('Js');
+	public $components = array('RequestHandler');
 
 	public $paginate = array(
         'limit' => 25,
@@ -39,7 +42,10 @@ class UsersController extends AppController {
 			} else {
 				$this->Session->setFlash('Invalid username or password');
 			}
-		} 
+		}else if ($this->RequestHandler->isAjax()) {
+			
+		}
+
 		
 
 	}
@@ -128,8 +134,34 @@ class UsersController extends AppController {
 			if ($this->request->is('post') || $this->request->is('put')) {
 				$this->User->id = $id;
 				
+				
 				/* print_r($this->request->data);
-				die */;
+				die; */
+				
+
+				/**upload code**/
+					if(is_uploaded_file($this->request->data['User']['photo_img']['tmp_name']))
+					{
+						$upload_dir = 'img/avatar/';
+						$tmp_name = $this->request->data['User']['photo_img']['name'];
+						list($txt, $ext) = explode(".", $tmp_name);
+						$actual_image_name = time().".".$ext;
+						
+						move_uploaded_file($this->request->data['User']['photo_img']['tmp_name'], $upload_dir.$actual_image_name);
+
+						//$this->User->create();
+						$this->request->data['User']['image'] = $actual_image_name;
+						
+						if ($this->User->save($this->request->data)) {
+							$this->Session->setFlash(__('Uploaded.'));
+							return $this->redirect(array('action' => 'profile'));  
+						}
+					}
+				/**end upload code**/
+				
+				
+
+				
 				
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('The user has been updated'));

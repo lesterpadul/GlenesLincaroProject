@@ -5,9 +5,18 @@
 			 
 			<div class="paragraphs">
 			  <div class="row">
-				<div class="span4">
+				<div class="span4 profImg">
+				<?php
+					$profile_image = $current_user['User']['image'];
+					if($profile_image==NULL)
+						$img = 'default-profile.png';
+					else
+						$img = 'avatar/'.$profile_image;
+					
+					
+				?>
 				  <!--<img style="float:left" src = "/img/profile-default.png" class = "img-thumbnail"/>-->
-				  <?php echo $this->Html->image('default-profile.png', array('alt' => 'profile', 'class' => 'img-thumbnail', 'border' => '0', 'data-src' => 'holder.js/100%x100')); ?>
+				  <?php echo $this->Html->image($img, array('alt' => 'profile', 'class' => 'img-thumbnail', 'border' => '0', 'data-src' => 'holder.js/100%x100')); ?>
 				  <div class="content-heading userInfo">
 					<?php
 								$gender = $current_user['User']['gender'];
@@ -38,7 +47,7 @@
 						  <div class="span4">Birthdate: <span><?php echo $date; ?></span></div>
 						  <div class="span4">Join Date: <span><?php echo $joindate; ?></span></div>
 						  <div class="span4">Last Login: <span><?php echo $lastlogin; ?></span></div>
-						  <div class="span4">Hobby: <span><?php echo $current_user['User']['hobby']; ?></span></div>
+						  <div class="span4" style="width:37%;">Hobby: <span><?php echo $current_user['User']['hobby']; ?></span></div>
 						</div>
 					
 				  </div>

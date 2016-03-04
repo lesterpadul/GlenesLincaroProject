@@ -66,3 +66,9 @@ fieldset legend {
 	font-weight:bold;
 }
 #main-content{margin-top:10px;}
+
+.profImg img{
+	width:200px;
+	height:200px;
+}
+}

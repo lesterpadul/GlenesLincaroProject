@@ -38,6 +38,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->script('jquery-1.12.1');
 		echo $this->Html->script('jquery-migrate-1.2.1');
 		echo $this->Html->script('zebra_datepicker');
+		
+		echo $this->Js->writeBuffer(array('cache'=>TRUE));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

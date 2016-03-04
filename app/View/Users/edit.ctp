@@ -5,14 +5,23 @@
 			 
 			<div class="paragraphs">
 			  <div class="row">
-				<div class="span4">
+				<div class="span4 profImg">
+				<?php
+					$profile_image = $current_user['User']['image'];
+					if($profile_image=='')
+						$img = 'default-profile.png';
+					else
+						$img = 'avatar/'.$profile_image;
+					
+					
+				?>
 				  <!--<img style="float:left" src = "/img/profile-default.png" class = "img-thumbnail"/>-->
-				  <?php echo $this->Html->image('default-profile.png', array('alt' => 'profile', 'class' => 'img-thumbnail', 'border' => '0', 'data-src' => 'holder.js/100%x100')); ?>
+				  <?php echo $this->Html->image($img, array('alt' => 'profile', 'class' => 'img-thumbnail', 'border' => '0', 'data-src' => 'holder.js/100%x100')); ?>
 				  <div class="ChImg">
 					<?php 
 						
 						echo $this->Form->create('User',array('enctype'=>'multipart/form-data')); 
-							echo $this->Form->input('image', array('type' => 'file'));
+							echo $this->Form->input('photo_img', array('type' => 'file'));
 							echo $this->Form->button('Upload', array('class' => 'btn btn-info') ); 
 						echo $this->Form->end();
 				
