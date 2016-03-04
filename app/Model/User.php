@@ -3,8 +3,8 @@ App::uses('AuthComponent', 'Controller/Component');
 
 class User extends AppModel {
 	
-	public $avatarUploadDir = 'img/avatars';
-    
+	public $avatarUploadDir = 'upload/avatar/';
+	
 	public $validate = array(
         'username' => array(
             'nonEmpty' => array(
@@ -34,7 +34,7 @@ class User extends AppModel {
             ),
 			'between' => array( 
 				'rule' => array('between', 5, 20), 
-				'required' => true, 
+				'required' => false, 
 				'message' => 'Usernames must be between 5 to 20 characters'
 			)
         ),
@@ -77,7 +77,15 @@ class User extends AppModel {
 				'rule' => array('between', 6, 60), 
 				'message' => 'Usernames must be between 6 to 60 characters'
 			)
+		), 
+		'upload' => array(
+            'extension' => array(
+				'rule' => array('extension', array("jpg", "png", "gif", "bmp","jpeg","JPG","JPEG","PNG","GIF","BMP")),
+				'message' => 'Invalid image file format',
+        
+			)
 		),
+
         
 		
 		
@@ -186,7 +194,7 @@ class User extends AppModel {
 	 * @param array $options
 	 * @return boolean
 	 */
-	 public function beforeSave($options = array()) {
+	public function beforeSave($options = array()) {
 		// hash our password
 		if (isset($this->data[$this->alias]['password'])) {
 			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
@@ -196,10 +204,33 @@ class User extends AppModel {
 		if (isset($this->data[$this->alias]['password_update'])) {
 			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password_update']);
 		}
-	
+		
+		/* print_r($this->data['User']);
+		die; */
+		// upload image
+		if($this->data['User']['profile']){
+			$valid_formats = array("jpg", "png", "gif", "bmp","jpeg","JPG","JPEG","PNG","GIF","BMP");
+			extract($this->data['User']['profile']['image']);
+			/* print_r($this->data['User']);
+			die; */
+			if ($size && !$error) {
+				list($txt, $ext) = explode(".", $name);
+				if(in_array($ext, $valid_formats)) {
+					
+					$actual_image_name = time().".".$ext;
+					//die($tmp_name.'---'.$this->avatarUploadDir.$actual_image_name);
+					move_uploaded_file($tmp_name, $this->avatarUploadDir.$actual_image_name);
+					$this->data['User']['upload']['image']['name'] = $this->avatarUploadDir;
+					
+				} else {
+					//invalid image format
+				}
+			}
+		
+		}
 		// fallback to our parent
 		return parent::beforeSave($options);
-	}
+	} 
 
 }
 

@@ -8,7 +8,16 @@
 				<div class="span4">
 				  <!--<img style="float:left" src = "/img/profile-default.png" class = "img-thumbnail"/>-->
 				  <?php echo $this->Html->image('default-profile.png', array('alt' => 'profile', 'class' => 'img-thumbnail', 'border' => '0', 'data-src' => 'holder.js/100%x100')); ?>
-				  <?php echo $this->Html->link( "Upload Profile",   array('action'=>'upload') ); ?>
+				  <div class="ChImg">
+					<?php 
+						
+						echo $this->Form->create('profile',array('enctype'=>'multipart/form-data')); 
+							echo $this->Form->input('image', array('type' => 'file'));
+							echo $this->Form->button('Upload', array('class' => 'btn btn-info') ); 
+						echo $this->Form->end();
+					
+					?>
+				  </div>
 				  <div class="content-heading userInfo">
 						<div style="width:45%! important;">
 							<?php 

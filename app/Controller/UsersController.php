@@ -93,12 +93,31 @@ class UsersController extends AppController {
     }
 
     public function edit($id = null) {
+		
+			/*start upload code*/
+			/* if (!empty($this->request->data)) {
+
+				$getFormvalue = $this->User->patchEntity('User', $this->request->data);
+
+				if (!empty($this->request->data['image']['name'])) {
+					$getFormvalue->avatar = $imageFileName;
+				}
+
+
+				if ($this->User->save($getFormvalue)) {
+					   $this->Flash->success('Your profile has been sucessfully updated.');
+					   return $this->redirect(['controller' => 'Users', 'action' => 'profile']);
+				   } else {
+						$this->Flash->error('Records not be saved. Please, try again.');
+				   }
+			} */
+			/*end upload code*/
 
 		    if (!$id) {
 				$this->Session->setFlash('Please provide a user id');
 				$this->redirect(array('action'=>'index'));
 			}
-
+	
 			$user = $this->User->findById($id);
 			if (!$user) {
 				$this->Session->setFlash('Invalid User ID Provided');
@@ -107,8 +126,15 @@ class UsersController extends AppController {
 
 			if ($this->request->is('post') || $this->request->is('put')) {
 				$this->User->id = $id;
-				//print_r($this->request->data);
-				//die;
+				
+				//add image to User object
+				if($this->request->data['profile'])
+					$this->User->image = $this->request->data['profile']['image']['name'];
+				
+				
+				print_r($this->request->data);
+				die;
+				
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('The user has been updated'));
 					//$this->redirect(array('action' => 'edit', $id));
