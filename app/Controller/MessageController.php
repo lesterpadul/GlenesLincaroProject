@@ -15,12 +15,12 @@ class MessageController extends AppController {
 		if ($this->request->is('post')) {
 				
 			$this->Message->create();
-			print_r($this->request->data);
-			die('xxxxxxxxxxxx');
+/* 			print_r($this->request->data);
+			die('xxxxxxxxxxxx'); */
 			if ($this->Message->save($this->request->data)) {
 			
 				$this->Session->setFlash(__('The message has been sent'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'Users', 'action' => 'home'));
 			} else {
 				$this->Session->setFlash(__('The message could not be sent. Please, try again.'));
 			}	 

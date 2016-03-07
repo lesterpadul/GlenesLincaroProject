@@ -189,23 +189,43 @@ class UsersController extends AppController {
 		$this->autoRender = false;
 		$term = $this->request->query['term'];
 		$term = trim($term);
-		$results = $this->User->find('list', array(
+		$results = $this->User->find('all', array(
 			'conditions' => array(
 				'OR' => array(
-					'name LIKE' => '%'.$term.'%',
+					'name LIKE' => $term.'%',
 					'email LIKE' => '%'.$term.'%'
+				),
+				'AND' => array(
+					'id <>' => $this->Auth->user('id')
+					
 				)
 			)
 		));
 		
 		
 		$res = array();
-		foreach ($results as $i => $t){   //this has to be done, if I want to have access to the id and name of the record
-			$res[] = array(
-				'id' => $i,
-				'label' => $t
-			);
-		}
+		if (count($results) > 0) {
+			foreach ($results as $r) {   //this has to be done, if I want to have access to the id and name of the record
+			
+				$avatar = $r['User']['image'];
+				
+				if ($avatar!=='') {
+					
+				}	else {
+					
+				}
+				
+				$res[] = array(
+					'id' => $r['User']['id'],
+					'label' => ' '.$r['User']['name']
+				); 
+			}
+		} /* else {
+				$res[] = array(
+					'id' => NULL,
+					'label' => 'No results found.'
+				); 
+		} */
 		return json_encode($res);
 	}
 	

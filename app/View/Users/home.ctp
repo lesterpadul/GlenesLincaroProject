@@ -11,9 +11,13 @@
 						<div class="profile-usermenu">
 							<ul class="nav">
 								<li>
-									<a href="Message/add">
+									<!-- <a href="Message/add">
 									<i class="glyphicon glyphicon-plus"></i>
-									New Message</a>
+									New Message</a> -->
+									<?php echo $this->Html->link( "<i class='glyphicon glyphicon-plus'></i>New Message", 
+														array('controller' => 'Message', 'action'=>'add'), 
+														array('escape' => false)
+														); ?>
 								</li>
 								<li class="active">
 									<a href="#">
