@@ -21,7 +21,7 @@
 					<?php 
 						
 						echo $this->Form->create('User',array('enctype'=>'multipart/form-data')); 
-							echo $this->Form->input('photo_img', array('type' => 'file'));
+							echo $this->Form->input('upload', array('type' => 'file'));
 							echo $this->Form->button('Upload', array('class' => 'btn btn-info') ); 
 						echo $this->Form->end();
 				

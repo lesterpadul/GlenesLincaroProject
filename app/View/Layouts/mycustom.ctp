@@ -33,11 +33,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('override');
 		echo $this->Html->css('zebra_datepicker');
+		echo $this->Html->css('jquery-ui.min');
 		
 		//javascrip
 		echo $this->Html->script('jquery-1.12.1');
 		echo $this->Html->script('jquery-migrate-1.2.1');
 		echo $this->Html->script('zebra_datepicker');
+		echo $this->Html->script('jquery-ui.min');
 		
 		echo $this->Js->writeBuffer(array('cache'=>TRUE));
 
@@ -65,8 +67,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						  <span class="glyphicon glyphicon-user"></span>&nbsp;Hi '.$username.' <span class="caret"></span></a>
 						  <ul class="dropdown-menu">
-							<li>'.$this->Html->link( "View Account",   array('action'=>'profile') ).'</li>
-							<li>'.$this->Html->link( "Logout",   array('action'=>'logout') ).'</li>
+							<li>'.$this->Html->link( "View Account",   array('controller' => 'Users', 'action'=>'profile') ).'</li>
+							<li>'.$this->Html->link( "Logout",   array('controller' => 'Users', 'action'=>'logout') ).'</li>
 						  </ul>
 						</li>
 					  </ul>';

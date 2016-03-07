@@ -139,14 +139,14 @@ class UsersController extends AppController {
 				
 
 				/**upload code**/
-					if(is_uploaded_file($this->request->data['User']['photo_img']['tmp_name']))
+					if(is_uploaded_file($this->request->data['User']['upload']['tmp_name']))
 					{
 						$upload_dir = 'img/avatar/';
-						$tmp_name = $this->request->data['User']['photo_img']['name'];
+						$tmp_name = $this->request->data['User']['upload']['name'];
 						list($txt, $ext) = explode(".", $tmp_name);
 						$actual_image_name = time().".".$ext;
 						
-						move_uploaded_file($this->request->data['User']['photo_img']['tmp_name'], $upload_dir.$actual_image_name);
+						move_uploaded_file($this->request->data['User']['upload']['tmp_name'], $upload_dir.$actual_image_name);
 
 						//$this->User->create();
 						$this->request->data['User']['image'] = $actual_image_name;
@@ -184,6 +184,31 @@ class UsersController extends AppController {
 			$this->set('current_user', $current_user);
     }
 
+	public function search(){
+		
+		$this->autoRender = false;
+		$term = $this->request->query['term'];
+		$term = trim($term);
+		$results = $this->User->find('list', array(
+			'conditions' => array(
+				'OR' => array(
+					'name LIKE' => '%'.$term.'%',
+					'email LIKE' => '%'.$term.'%'
+				)
+			)
+		));
+		
+		
+		$res = array();
+		foreach ($results as $i => $t){   //this has to be done, if I want to have access to the id and name of the record
+			$res[] = array(
+				'id' => $i,
+				'label' => $t
+			);
+		}
+		return json_encode($res);
+	}
+	
     public function delete($id = null) {
 		
 		if (!$id) {

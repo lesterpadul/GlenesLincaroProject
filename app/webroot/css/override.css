@@ -71,4 +71,50 @@ fieldset legend {
 	width:200px;
 	height:200px;
 }
+
+/*missing from bootstrap added*/
+/***message styles*********/
+.top-bar {
+    background: #666;
+    color: white;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
 }
+.messages {
+    background: white;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+}
+.base_sent {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.msg_container {
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+}
+.msg_container_base {
+    background: #e5e5e5;
+    margin: 0;
+    padding: 0 10px 10px;
+    max-height: 700px;
+    overflow-x: hidden;
+}
+.msg_sent {
+    padding-bottom: 20px !important;
+    margin-right: 0;
+}
+.base_sent {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.avatar {
+    position: relative;
+}
+
+/*missing for bootstrap added*/
